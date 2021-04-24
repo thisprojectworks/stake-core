@@ -254,6 +254,22 @@ contract ArtArmyStake  {
     }
 
     /**
+     * @dev Return the current points of the player.
+     */
+
+    function getPlayerCurrentPoints(address account) external view virtual returns (uint256) {
+        uint256 currentPoints = 0;
+        // Algorithm to calculate the current points
+        if(_player[account].time != 0){
+            uint256 timeDifference = block.timestamp.sub(_player[account].time);
+            uint256 newPoints = timeDifference.mul(_stakes[account]);
+            currentPoints = _player[account].points.add(newPoints);
+        }
+
+        return currentPoints;
+    }
+
+    /**
      * @dev Called when a player add tokens to stake.
      */
     function addStake(uint256 amount) external returns (bool) {
