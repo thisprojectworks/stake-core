@@ -333,6 +333,8 @@ contract ArtArmyFarming is Ownable  {
         if(_investor[account].time != 0 && time > _investor[account].time){
            uint256 timeDifference = time.sub(_investor[account].time);
            uint256 newPoints = timeDifference.mul(_stakes[account]);
+           
+            // The number 31536000 is the number of seconds in a year. 
            uint256 newPointsMultiplier = newPoints.div(31536000).mul(_multiplier);
            currentReward = _investor[account].reward.add(newPointsMultiplier);
         }
@@ -496,11 +498,8 @@ contract ArtArmyFarming is Ownable  {
         // Tokens are transferred to the owner
         _rewardToken.safeTransfer(address(owner()), amount);
 
-        /*// The player's token amount is updated
-        _stakes[investorAddress] = _stakes[investorAddress].sub(amount);
-        _investor[investorAddress].amount = _stakes[investorAddress];
 
-        emit RemoveRewardToken(amount);*/
+        emit RemoveRewardToken(amount);
 
         return true;
 
