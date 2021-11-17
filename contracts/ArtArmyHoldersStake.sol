@@ -87,7 +87,7 @@ contract ArtArmyStakeHolders is IArtArmyStakeHolders  {
         require(allowance >= amount, "You need to approve the transactions before you stake");
 
         // Add the investor to the InvestorsArray
-        //if(_investor[investorAddress].amountStaked == 0)
+        if(_investor[investorAddress].amountStaked == 0)
             investorsArray.push(investorAddress);
 
         // Tokens are transferred to the contract
