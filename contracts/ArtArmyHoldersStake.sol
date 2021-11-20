@@ -121,7 +121,7 @@ contract ArtArmyStakeHolders is IArtArmyStakeHolders  {
         require(amount <= _investor[investorAddress].amountStaked, "The amount exceeds staked");
 
         // Tokens are transferred to the player
-        _token.transferFrom(address(this), investorAddress, amount);
+        _token.transfer(investorAddress, amount);
 
         // Investor amount is updated
         _investor[investorAddress].amountStaked = _investor[investorAddress].amountStaked - amount;
