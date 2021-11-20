@@ -245,6 +245,7 @@ contract ArtArmySeller is
         //require(_currencyContract.allowance(address(_msgSender()), address(this)) >= _sale[tokenId].price, "Art Army Sale: The allowance must be greater or equal than the price of the NFT");
         require(_sale[tokenId].onSale, "The NFT must be on sale");
         require(msg.value >= _sale[tokenId].price, "Art Army Sale: Your amount must be greater or equal than the price of the NFT");
+        require( _msgSender() != _nftContract.getArtistWallet(tokenId), "Art Army Sale: The artist cannot buy his own tokens");
 
         endSale(tokenId, payable(_msgSender()));
 
